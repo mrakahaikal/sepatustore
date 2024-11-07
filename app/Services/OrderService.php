@@ -57,7 +57,7 @@ class OrderService
         $orderData['total_tax'] = $totalTax;
         $orderData['grand_total_amount'] = $grandTotalAmount;
 
-        return compact('orderdata', 'shoe');
+        return compact('orderData', 'shoe');
     }
 
     public function applyPromoCode(string $code, int $subTotalAmount)

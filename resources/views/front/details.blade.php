@@ -51,7 +51,7 @@
             </div>
         </div>
     </div>
-    <form action="{{ route('front.save_order') }}" method="POST" class="flex flex-col gap-3">
+    <form action="{{ route('front.save_order', $shoe) }}" method="POST" class="flex flex-col gap-3">
         @csrf
         <div class="flex flex-col gap-3 px-4">
             <h2 class="font-bold">Choose Size</h2>
