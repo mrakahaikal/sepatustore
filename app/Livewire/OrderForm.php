@@ -32,7 +32,42 @@ class OrderForm extends Component
         $this->shoe = $shoe;
         $this->orderData = $orderData;
         $this->subTotalAmount = $shoe->price;
-        $this->grandTotalAmount = $shoe->price;
+        $this->grandTotalAmount = $this->shoe->price;
+    }
+
+    public function incrementQuantity()
+    {
+        if ($this->quantity < $this->shoe->stock) {
+            $this->quantity++;
+            $this->calculatedTotal();
+        }
+    }
+
+    public function decrementQuantity()
+    {
+        if ($this->quantity > 1) {
+            $this->quantity--;
+            $this->calculatedTotal();
+        }
+    }
+
+    public function updatedQuantity()
+    {
+        $this->validateOnly(
+            'quantity',
+            [
+                'quantity' => 'required|integer|min:1|max:' . $this->shoe->stock,
+            ],
+            [
+                'quantity.max' => 'Stock tidak tersedia',
+            ]
+        );
+    }
+
+    public function calculatedTotal()
+    {
+        $this->subTotalAmount = $this->shoe->price * $this->quantity;
+        $this->grandTotalAmount = $this->subTotalAmount - $this->discount;
     }
 
     public function render()
