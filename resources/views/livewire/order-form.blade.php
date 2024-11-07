@@ -2,7 +2,7 @@
     <div class="flex w-[260px] h-[160px] shrink-0 overflow-hidden mx-auto">
         <img id="main-thumbnail" src="{{ Storage::url($shoe->thumbnail) }}" class="w-full h-full object-contain object-center" alt="thumbnail">
     </div>
-    <form action="customer-data.html" class="flex flex-col gap-5">
+    <form wire:submit.prevent='submit' class="flex flex-col gap-5">
         <div class="flex flex-col rounded-[20px] p-4 mx-4 pb-5 gap-5 bg-white">
             <div id="info" class="flex items-center justify-between">
                 <div class="flex flex-col">
@@ -74,7 +74,7 @@
             </div>
             <div class="flex items-center justify-between">
                 <p class="font-semibold">Discount</p>
-                <p id="discount" class="font-bold text-[#FF1943]">- Rp{{$discount}}</p>
+                <p id="discount" class="font-bold text-[#FF1943]">- Rp{{ number_format($discount, 0, ',','.') }}</p>
             </div>
         </div>
         <div id="bottom-nav" class="relative flex h-[100px] w-full shrink-0 mt-5">

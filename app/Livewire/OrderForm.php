@@ -64,10 +64,76 @@ class OrderForm extends Component
         );
     }
 
+    public function updatedPromoCode()
+    {
+        $this->applyPromoCode();
+    }
+
+    public function applyPromoCode()
+    {
+        if (!$this->promoCode) {
+            $this->resetDiscount();
+            return;
+        }
+
+        $result = $this->orderService->applyPromoCode($this->promoCode, $this->subTotalAmount);
+
+        if (isset($result['error'])) {
+            session()->flash('error', $result['error']);
+            $this->resetDiscount();
+        } else {
+            session()->flash('message', 'Kode promo tersedia, yay!');
+            $this->discount = $result['discount'];
+            $this->calculatedTotal();
+            $this->promoCodeId = $result['promoCodeId'];
+            $this->totalDiscountAmount = $result['discount'];
+        }
+    }
+
+    public function resetDiscount()
+    {
+        $this->discount = 0;
+        $this->calculatedTotal();
+        $this->promoCodeId = null;
+        $this->totalDiscountAmount = 0;
+    }
+
     public function calculatedTotal()
     {
         $this->subTotalAmount = $this->shoe->price * $this->quantity;
         $this->grandTotalAmount = $this->subTotalAmount - $this->discount;
+    }
+
+    public function rules()
+    {
+        return [
+            'name' => 'required|string|max:255',
+            'email' => 'required|email|max:255',
+            'quantity' => 'required|integer|min:1|max:' . $this->shoe->stock,
+        ];
+    }
+
+    public function gatherBookingData(array $validatedData)
+    {
+        return [
+            'name' => $validatedData['name'],
+            'email' => $validatedData['email'],
+            'grand_total_amount' => $this->grandTotalAmount,
+            'sub_total_amount' => $this->subTotalAmount,
+            'total_discount_amount' => $this->totalDiscountAmount,
+            'discount' => $this->discount,
+            'promo_code' => $this->promoCode,
+            'promo_code_id' => $this->promoCodeId,
+            'quantity' => $this->quantity,
+        ];
+    }
+
+    public function submit()
+    {
+        $validatedData = $this->validate();
+        $bookingData = $this->gatherBookingData($validatedData);
+        $this->orderService->updateCustomerData($bookingData);
+        return redirect()->route('front.customer_data');
     }
 
     public function render()
