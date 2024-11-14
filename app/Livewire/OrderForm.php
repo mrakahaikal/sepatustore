@@ -121,7 +121,7 @@ class OrderForm extends Component
             'grand_total_amount' => $this->grandTotalAmount,
             'sub_total_amount' => $this->subTotalAmount,
             'total_discount_amount' => $this->totalDiscountAmount,
-            'discount' => $this->discount,
+            'discount_amount' => $this->discount,
             'promo_code' => $this->promoCode,
             'promo_code_id' => $this->promoCodeId,
             'quantity' => $this->quantity,

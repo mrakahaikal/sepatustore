@@ -109,7 +109,7 @@ class OrderService
                 $validated['discount_amount'] = $orderData['discount_amount'];
                 $validated['promo_code_id'] = $orderData['promo_code_id'];
                 $validated['shoe_id'] = $orderData['shoe_id'];
-                $validated['size_id'] = $orderData['size_id'];
+                $validated['shoe_size'] = $orderData['size_id'];
                 $validated['is_paid'] = false;
                 $validated['booking_trx_id'] = ProductTransaction::generateUniqueTrxId();
 
