@@ -99,7 +99,7 @@
             </div>
         </div>
         <hr class="border-[#EAEAED]">
-        <a href="#" class="rounded-full p-[12px_20px] text-center w-full bg-[#C5F277] font-bold">Call Customer Service</a>
+        <a href="#" class="rounded-full p-[12px_20px] text-center w-full bg-primary font-bold">Call Customer Service</a>
         <hr class="border-[#EAEAED]">
         <div class="flex items-center gap-[10px]">
             <img src="{{ asset('assets/images/icons/shield-tick.svg') }}" class="w-8 h-8 flex shrink-0" alt="icon">

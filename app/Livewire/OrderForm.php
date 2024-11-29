@@ -50,7 +50,6 @@ class OrderForm extends Component
             $this->calculatedTotal();
         }
     }
-
     public function updatedQuantity()
     {
         $this->validateOnly(
@@ -63,7 +62,6 @@ class OrderForm extends Component
             ]
         );
     }
-
     public function updatedPromoCode()
     {
         $this->applyPromoCode();

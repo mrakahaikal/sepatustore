@@ -54,4 +54,5 @@
             @endforelse
         </div>
     </section>
+    <x-navbar></x-navbar>
 </x-layouts.app>

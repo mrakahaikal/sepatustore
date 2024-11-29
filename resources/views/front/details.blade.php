@@ -73,9 +73,7 @@
                         <p class="font-bold text-[20px] leading-[30px] text-white">Rp{{ number_format($shoe->price, 0, ',', '.') }}</p>
                         <p class="text-sm leading-[21px] text-[#878785]">One pair shoes</p>
                     </div>
-                    <button type="submit" class="rounded-full p-[12px_20px] bg-[#C5F277] font-bold">
-                        Buy Now
-                    </button>
+                    <x-button-primary>Buy Now</x-button-primary>
                 </div>
             </div>
         </div>

@@ -155,7 +155,7 @@
                     <div class="flex flex-col gap-[2px] mr-2">
                         <p class="text-white">Apakah anda sudah benar membayar?</p>
                     </div>
-                    <button type="submit" class="rounded-full p-[12px_20px] bg-[#C5F277] font-bold text-nowrap">
+                    <button type="submit" class="rounded-full p-[12px_20px] bg-primary font-bold text-nowrap">
                         Confirm Now
                     </button>
                 </div>

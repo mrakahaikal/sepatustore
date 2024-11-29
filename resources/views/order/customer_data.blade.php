@@ -72,7 +72,7 @@
                         <p id="grand-total" class="font-bold text-[20px] leading-[30px] text-white">Rp{{ number_format($orderData['grand_total_amount'], 0, ',','.') }}</p>
                         <p class="text-sm leading-[21px] text-[#878785]">Grand total</p>
                     </div>
-                    <button type="submit" class="rounded-full p-[12px_20px] bg-[#C5F277] font-bold">
+                    <button type="submit" class="rounded-full p-[12px_20px] bg-primary font-bold">
                         Continue
                     </button>
                 </div>

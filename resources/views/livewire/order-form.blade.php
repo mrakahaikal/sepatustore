@@ -49,7 +49,7 @@
                     </p>
                     <input type="number" wire:model.live.debounce.500ms='quantity' name="quantity" id="quantity" value="1" class="sr-only -z-10">
 
-                    <button type="button" wire:click='incrementQuantity()' class="flex w-full h-[54px] items-center justify-center rounded-full bg-[#C5F277] overflow-hidden">
+                    <button type="button" wire:click='incrementQuantity()' class="flex w-full h-[54px] items-center justify-center rounded-full bg-primary overflow-hidden">
                         <span class="font-bold text-xl leading-[30px]">+</span>
                     </button>
                 </div>
@@ -84,7 +84,7 @@
                         <p class="font-bold text-[20px] leading-[30px] text-white">Rp{{ number_format($grandTotalAmount,0,',','.') }}</p>
                         <p class="text-sm leading-[21px] text-[#878785]">Grand total</p>
                     </div>
-                    <button type="submit" class="rounded-full p-[12px_20px] bg-[#C5F277] font-bold">
+                    <button type="submit" class="rounded-full p-[12px_20px] bg-primary font-bold">
                         Continue
                     </button>
                 </div>
