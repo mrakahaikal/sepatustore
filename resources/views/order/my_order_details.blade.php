@@ -6,12 +6,7 @@
         <p class="font-bold text-lg leading-[27px]">Booking Details</p>
         <div class="dummy-btn w-10"></div>
     </x-slot:topbar>
-    <section id="your-order" class="accordion flex flex-col rounded-[20px] p-4 pb-5 gap-5 mx-4 bg-white overflow-hidden transition-all duration-300 has-[:checked]:!h-[66px]">
-        <label class="group flex items-center justify-between">
-            <h2 class="font-bold text-xl leading-[30px]">Your Order</h2>
-            <img src="{{ asset('assets/images/icons/arrow-up.svg') }}" class="w-7 h-7 transition-all duration-300 group-has-[:checked]:rotate-180" alt="icon">
-            <input type="checkbox" class="hidden">
-        </label>
+    <x-accordion id="your-order" label="Your Order">
         <div class="flex items-center gap-[14px]">
             <div class="flex shrink-0 w-20 h-20 rounded-[20px] bg-[#D9D9D9] p-1 overflow-hidden">
                 <img src="{{ Storage::url($orderDetails->shoe->thumbnail) }}" class="w-full h-full object-contain" alt="">
@@ -56,13 +51,8 @@
             <p class="rounded-full p-[6px_14px] bg-[#07B704] font-bold text-sm leading-[21px] text-white">SUCCESS</p>
         </div>
         @endif
-    </section>
-    <section id="customer" class="accordion flex flex-col rounded-[20px] p-4 pb-5 gap-5 mx-4 bg-white overflow-hidden transition-all duration-300 has-[:checked]:!h-[66px] mb-10">
-        <label class="group flex items-center justify-between">
-            <h2 class="font-bold text-xl leading-[30px]">Customer</h2>
-            <img src="{{ asset('assets/images/icons/arrow-up.svg') }}" class="w-7 h-7 transition-all duration-300 group-has-[:checked]:rotate-180" alt="icon">
-            <input type="checkbox" class="hidden">
-        </label>
+    </x-accordion>
+    <x-accordion id="customer" label="Customer">
         <div class="flex items-center gap-5">
             <img src="{{ asset('assets/images/icons/delivery.svg') }}" class="w-6 h-6 flex shrink-0" alt="icon">
             <div class="flex flex-col gap-[6px]">
@@ -105,10 +95,5 @@
             <img src="{{ asset('assets/images/icons/shield-tick.svg') }}" class="w-8 h-8 flex shrink-0" alt="icon">
             <p class="leading-[26px]">Kami melindungi data privasi anda dengan baik bantuan Angga X.</p>
         </div>
-    </section>
-    </div>
-
-    <x-slot:script>
-        <script src="js/accordion.js"></script>
-    </x-slot:script>
+    </x-accordion>
 </x-layouts.app>

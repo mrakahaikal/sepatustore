@@ -10,7 +10,4 @@
         <div class="dummy-btn w-10"></div>
     </x-slot:topbar>
     <livewire:order-form :$shoe :$orderData />
-    {{-- <x-slot:script>
-        <script src="{{ asset('js/booking.js') }}"></script>
-    </x-slot:script> --}}
 </x-layouts.app>

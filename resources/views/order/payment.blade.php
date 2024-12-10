@@ -8,12 +8,7 @@
     </x-slot:topbar>
     <form method="POST" enctype="multipart/form-data" action="{{ route('front.payment_confirm') }}" class="relative flex flex-col w-full max-w-[640px] min-h-screen gap-5 mx-auto bg-[#F5F5F0]">
         @csrf
-        <section id="your-order" class="accordion flex flex-col rounded-[20px] p-4 pb-5 gap-5 mx-4 bg-white overflow-hidden transition-all duration-300 has-[:checked]:!h-[66px]">
-            <label class="group flex items-center justify-between">
-                <h2 class="font-bold text-xl leading-[30px]">Your Order</h2>
-                <img src="{{ asset('assets/images/icons/arrow-up.svg') }}" class="w-7 h-7 transition-all duration-300 group-has-[:checked]:rotate-180" alt="icon">
-                <input type="checkbox" class="hidden">
-            </label>
+        <x-accordion id="your-order" label="Your Order">
             <div class="flex items-center gap-[14px]">
                 <div class="flex shrink-0 w-20 h-20 rounded-[20px] bg-[#D9D9D9] p-1 overflow-hidden">
                     <img src="{{ Storage::url($shoe->thumbnail) }}" class="w-full h-full object-contain" alt="">
@@ -39,13 +34,8 @@
                 <p class="font-semibold">Shoe Size</p>
                 <p class="font-bold">{{ $orderData['shoe_size'] }}</p>
             </div>
-        </section>
-        <section id="customer" class="accordion flex flex-col rounded-[20px] p-4 pb-5 gap-5 mx-4 bg-white overflow-hidden transition-all duration-300 has-[:checked]:!h-[66px]">
-            <label class="group flex items-center justify-between">
-                <h2 class="font-bold text-xl leading-[30px]">Customer</h2>
-                <img src="{{ asset('assets/images/icons/arrow-up.svg') }}" class="w-7 h-7 transition-all duration-300 group-has-[:checked]:rotate-180" alt="icon">
-                <input type="checkbox" class="hidden">
-            </label>
+        </x-accordion>
+        <x-accordion id="customer" label="Customer">
             <div class="flex items-center gap-5">
                 <img src="{{ asset('assets/images/icons/user.svg') }}" class="w-6 h-6 flex shrink-0" alt="icon">
                 <div class="flex flex-col gap-[6px]">
@@ -74,13 +64,8 @@
                     <p class="font-bold">{{ $orderData['address'] }}, {{ $orderData['city'] }} - {{ $orderData['post_code'] }}</p>
                 </div>
             </div>
-        </section>
-        <section id="payment-details" class="accordion flex flex-col rounded-[20px] p-4 pb-5 gap-5 mx-4 bg-white overflow-hidden transition-all duration-300 has-[:checked]:!h-[66px]">
-            <label class="group flex items-center justify-between">
-                <h2 class="font-bold text-xl leading-[30px]">Payment Details</h2>
-                <img src="{{ asset('assets/images/icons/arrow-up.svg') }}" class="w-7 h-7 transition-all duration-300 group-has-[:checked]:rotate-180" alt="icon">
-                <input type="checkbox" class="hidden">
-            </label>
+        </x-accordion>
+        <x-accordion id="payment-details" label="Payment Details">
             <div class="flex items-center justify-between">
                 <p class="font-semibold">Sub Total</p>
                 <p class="font-bold">Rp{{ number_format($orderData['sub_total_amount'], 0, ',','.') }}</p>
@@ -105,13 +90,8 @@
                 <p class="font-semibold">Grand Total</p>
                 <p class="font-bold text-2xl leading-9 text-[#07B704]">Rp{{ number_format($orderData['grand_total_amount'], 0, ',','.') }}</p>
             </div>
-        </section>
-        <section id="send-payment-to" class="accordion flex flex-col rounded-[20px] p-4 pb-5 gap-5 mx-4 bg-white overflow-hidden transition-all duration-300 has-[:checked]:!h-[66px]">
-            <label class="group flex items-center justify-between">
-                <h2 class="font-bold text-xl leading-[30px]">Send Payment to</h2>
-                <img src="{{ asset('assets/images/icons/arrow-up.svg') }}" class="w-7 h-7 transition-all duration-300 group-has-[:checked]:rotate-180" alt="icon">
-                <input type="checkbox" class="hidden">
-            </label>
+        </x-accordion>
+        <x-accordion id="send-payment-to" label="Send Payment to">
             <div class="flex items-center gap-3">
                 <div class="flex shrink-0 w-[71px] h-[50px] overflow-hidden">
                     <img src="{{ asset('assets/images/logos/bca-bank-central-asia 1.svg') }}" class="w-full h-full object-contain" alt="bank logo">
@@ -148,7 +128,7 @@
                 <img src="{{ asset('assets/images/icons/shield-tick.svg') }}" class="w-8 h-8 flex shrink-0" alt="icon">
                 <p class="leading-[26px]">Kami melindungi data privasi anda dengan baik bantuan Angga X.</p>
             </div>
-        </section>
+        </x-accordion>
         <div id="bottom-nav" class="relative flex h-[100px] w-full shrink-0 mt-5">
             <div class="fixed bottom-5 w-full max-w-[640px] z-30 px-4">
                 <div class="flex items-center justify-between rounded-full bg-[#2A2A2A] p-[10px] pl-6">
@@ -164,7 +144,6 @@
     </form>
 
     <x-slot:script>
-        <script src="{{ asset('js/accordion.js') }}"></script>
         <script src="{{ asset('js/payment.js') }}"></script>
     </x-slot:script>
 </x-layouts.app>
