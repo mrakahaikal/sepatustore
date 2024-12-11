@@ -2,6 +2,7 @@
 
 use App\Livewire\Pages\Home;
 use Illuminate\Support\Facades\Route;
+use App\Livewire\Pages\ProductDetails;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\OrderController;
 
@@ -29,3 +30,4 @@ Route::post('/order/payment/confirm', [OrderController::class, 'paymentConfirm']
 Route::get('/order/finished/{productTransaction:id}', [OrderController::class, 'orderFinished'])->name('front.order_finished');
 
 Route::get('/home', Home::class)->name('home');
+Route::get('/detil/{shoe:slug}', ProductDetails::class)->name('prod.details');

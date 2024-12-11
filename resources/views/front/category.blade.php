@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-slot:topbar>
-        <a href="index.html">
+        <a href="{{ route('front.index') }}">
             <img src="{{ asset('assets/images/icons/back.svg') }}" class="w-10 h-10" alt="icon">
         </a>
         <p class="font-bold text-lg leading-[27px]">Category</p>

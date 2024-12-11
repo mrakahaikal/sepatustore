@@ -118,8 +118,4 @@
         </div>
     </section>
     <x-navbar />
-    <x-slot:script>
-        <script src="{{ asset('js/index.js') }}"></script>
-
-    </x-slot:script>
 </x-layouts.app>

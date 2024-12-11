@@ -1,6 +1,6 @@
 <x-layouts.app>
     <x-slot:topbar>
-        <a href="check-booking.html">
+        <a href="/" wire:navigate>
             <img src="{{ asset('assets/images/icons/back.svg') }}" class="w-10 h-10" alt="icon">
         </a>
         <p class="font-bold text-lg leading-[27px]">Booking Details</p>

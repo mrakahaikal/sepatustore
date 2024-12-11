@@ -1,6 +1,6 @@
 <div id="bottom-nav" class="relative flex h-[100px] w-full shrink-0">
     <nav class="fixed bottom-5 w-full max-w-[640px] px-4 z-30">
-        <div class="grid grid-flow-col auto-cols-auto items-center justify-between rounded-full bg-[#2A2A2A] p-2 px-[30px]">
+        <div class="grid grid-flow-col auto-cols-auto items-center justify-between rounded-full bg-[#2A2A2A] p-2 min-h-16 px-[30px]">
             <x-nav-link href="{{ route('front.index') }}" isEdge="true" routeName="front.index">
                 <x-slot:icon>
                     <svg class="size-6" width="24" height="24" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
