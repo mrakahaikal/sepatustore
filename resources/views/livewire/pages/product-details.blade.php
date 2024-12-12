@@ -3,7 +3,7 @@
         {{ $shoe->name }} Details
     </x-slot:title>
     <x-slot:topbar>
-        <a href="{{ route('home') }}" wire:navigate>
+        <a href="{{ route('front.index') }}" wire:navigate>
             <img src="{{ asset('assets/images/icons/back.svg') }}" class="w-10 h-10" alt="icon">
         </a>
         <p class="font-bold text-lg leading-[27px]">Look Details</p>
@@ -14,7 +14,7 @@
             <img id="main-thumbnail" src="{{ Storage::url($shoe->photos()->latest()->first()->photo) }}" class="w-full h-full object-contain object-center" alt="thumbnail">
         </div>
         <div class="swiper w-full overflow-hidden">
-            <div class="swiper-wrapper">
+            <div class="swiper-wrapper product-swiper">
                 @foreach($shoe->photos as $photo)
                 <div class="swiper-slide !w-fit py-[2px]">
                     <label class="thumbnail-selector flex flex-col shrink-0 w-20 h-20 rounded-[20px] p-[10px] bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700] has-[:checked]:ring-2 has-[:checked]:ring-[#FFC700]">
@@ -79,9 +79,8 @@
         </div>
     </form>
     <x-slot:script>
-        <script src="{{ asset('js/details.js') }}"></script>
         <script>
-            document.addEventListener('DOMContentLoaded', function() {
+            document.addEventListener('livewire:navigated', function() {
                 const sizeRadios = document.querySelectorAll('input[name="shoe_size"]');
                 const sizeIdInput = document.getElementById('size_id');
 

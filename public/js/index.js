@@ -1,3 +1,5 @@
+import Swiper from 'swiper';
+
 const swiper = new Swiper('.swiper', {
     // Optional parameters
     slidesOffsetAfter: 16,

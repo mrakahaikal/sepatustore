@@ -1,7 +1,7 @@
-@props(['link','thumbnail','name','price'])
+@props(['link','thumbnail','name','price', 'id'])
 
-<div class="swiper-slide !w-fit py-0.5">
-    <a href="{{ $link }}" wire:navigate>
+<div class="swiper-slide !w-fit py-0.5" wire:key='{{ $id }}'>
+    <a href="{{ $link }}">
         <div class="flex flex-col shrink-0 w-[230px] h-full rounded-3xl gap-[14px] p-[10px] pb-4 bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700]">
             <div class="w-[210px] h-[230px] rounded-3xl bg-[#D9D9D9] overflow-hidden">
                 <img src="{{ Storage::url($thumbnail) }}" class="w-full h-full object-cover" alt="{{ $name }} thumbnail">

@@ -8,7 +8,7 @@
     @livewireStyles
     @vite(['resources/css/app.css', 'resources/js/app.js'])
 </head>
-<body>
+<body class="bg-[#F5F5F0]">
     <div class="relative flex flex-col w-full max-w-screen-sm min-h-dvh gap-5 mx-auto bg-[#F5F5F0]">
         @isset($topbar)
         <div id="top-bar" class="flex justify-between items-center px-4 mt-4">

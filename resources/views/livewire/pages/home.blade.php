@@ -19,6 +19,6 @@
     <x-home.partial-fresh :$newShoes />
     <x-navbar />
     <x-slot:script>
-        <script src="{{ asset('js/index.js') }}"></script>
+        {{-- <script src="{{ asset('js/index.js') }}"></script> --}}
     </x-slot:script>
 </div>

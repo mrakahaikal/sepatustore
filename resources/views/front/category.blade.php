@@ -26,15 +26,15 @@
         </div>
         <div class="flex flex-col gap-4">
             @forelse($category->shoes as $shoe)
-            <a href="{{ route('front.details', $shoe) }}">
+            <a wire:key='{{ $shoe->id }}' href="{{ route('front.details', $shoe) }}" wire:navigate>
                 <div class="flex items-center rounded-3xl p-[10px_16px_16px_10px] gap-[14px] bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700]">
                     <div class="w-20 h-20 flex shrink-0 rounded-2xl bg-[#D9D9D9] overflow-hidden">
-                        <img src="{{ asset('assets/images/thumbnails/photo5.png') }}" class="w-full h-full object-cover" alt="thumbnail">
+                        <img src="{{ Storage::url($shoe->thumbnail) }}" class="w-full h-full object-cover" alt="{{ $shoe->name }} thumbnail">
                     </div>
                     <div class="flex w-full items-center justify-between gap-[14px]">
                         <div class="flex flex-col gap-[6px]">
                             <h3 class="font-bold leading-[20px]">{{ $shoe->name }}</h3>
-                            <p class="text-sm leading-[21px] text-[#878785]">{{ number_format($shoe->price, 0, ',', '.') }}</p>
+                            <p class="text-sm leading-[21px] text-[#878785]">Rp{{ number_format($shoe->price, 0, ',', '.') }}</p>
                         </div>
                         <div class="flex flex-col gap-1 items-end shrink-0">
                             <div class="flex">
