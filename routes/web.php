@@ -10,7 +10,7 @@ use App\Livewire\Pages\Order\OrderBooking;
 use Inertia\Inertia;
 
 
-// Route::get('/', [FrontController::class, 'index'])->name('front.index');
+Route::get('/', [FrontController::class, 'index'])->name('front.index');
 
 Route::get('/search', [FrontController::class, 'search'])->name('front.search');
 
@@ -33,12 +33,21 @@ Route::post('/order/payment/confirm', [OrderController::class, 'paymentConfirm']
 
 Route::get('/order/finished/{productTransaction:id}', [OrderController::class, 'orderFinished'])->name('front.order_finished');
 
-Route::get('/', Home::class)->name('front.index');
+// Route::get('/', Home::class)->name('front.index');
 Route::get('/details/{shoe:slug}', ProductDetails::class)->name('front.details');
 
 Route::get('/order/booking/', OrderBooking::class)->name('front.booking');
 
+// Inertia Page
+Route::get('/home', function () {
+    return Inertia::render('Home/Index');
+});
 
+
+
+/**
+ * Breeze Inertia
+ */
 
 // Route::get('/', function () {
 //     return Inertia::render('Welcome', [
