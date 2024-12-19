@@ -1,13 +1,14 @@
 <?php
 
-use App\Http\Controllers\ProfileController;
-use Illuminate\Foundation\Application;
+use Inertia\Inertia;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\ProductDetails;
+use Illuminate\Foundation\Application;
+use App\Http\Controllers\PageController;
 use App\Http\Controllers\FrontController;
 use App\Http\Controllers\OrderController;
 use App\Livewire\Pages\Order\OrderBooking;
-use Inertia\Inertia;
+use App\Http\Controllers\ProfileController;
 
 
 Route::get('/', [FrontController::class, 'index'])->name('front.index');
@@ -42,6 +43,8 @@ Route::get('/order/booking/', OrderBooking::class)->name('front.booking');
 Route::get('/home', function () {
     return Inertia::render('Home/Index');
 });
+
+Route::get('/homepage', [PageController::class, 'index']);
 
 
 

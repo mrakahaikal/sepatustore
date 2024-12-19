@@ -5,6 +5,15 @@ import Featured from './Partials/Featured.vue';
 import Fresh from './Partials/Fresh.vue';
 import Navigation from '@/Components/Navigation.vue';
 import { Head } from '@inertiajs/vue3';
+
+defineProps({
+    data: {
+        type: Object,
+        required: true
+    },
+})
+
+
 </script>
 
 <template>
@@ -30,7 +39,7 @@ import { Head } from '@inertiajs/vue3';
             </button>
         </form>
         <Categories />
-        <Featured />
+        <Featured :products="data.popularShoes" />
         <Fresh />
         <Navigation />
     </AppLayout>
