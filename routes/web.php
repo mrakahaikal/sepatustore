@@ -11,6 +11,7 @@ use App\Livewire\Pages\Order\OrderBooking;
 
 Route::get('/search', [FrontController::class, 'search'])->name('front.search');
 
+Route::get('/browse', [FrontController::class, 'categories'])->name('front.categories');
 Route::get('/browse/{category:slug}', [FrontController::class, 'category'])->name('front.category');
 
 Route::get('/check-booking', [OrderController::class, 'checkBooking'])->name('front.check_booking');
@@ -34,3 +35,5 @@ Route::get('/', Home::class)->name('front.index');
 Route::get('/details/{shoe:slug}', ProductDetails::class)->name('front.details');
 
 Route::get('/order/booking/', OrderBooking::class)->name('front.booking');
+
+Route::view('/profile', 'profile')->name('front.profile');

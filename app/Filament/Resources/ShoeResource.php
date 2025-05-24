@@ -7,6 +7,7 @@ use App\Models\Shoe;
 use Filament\Tables;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
+use Filament\Support\RawJs;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Fieldset;
@@ -29,6 +30,8 @@ class ShoeResource extends Resource
 
     protected static ?string $navigationIcon = 'heroicon-o-archive-box';
 
+    protected static ?string $navigationGroup = 'Shoe';
+
     public static function form(Form $form): Form
     {
         return $form
@@ -40,7 +43,8 @@ class ShoeResource extends Resource
                             ->maxLength(255),
                         TextInput::make('price')
                             ->required()
-                            ->numeric()
+                            ->mask(RawJs::make('$money($input, \',\', \'.\')'))
+                            ->stripCharacters('.')
                             ->prefix('IDR'),
                         FileUpload::make('thumbnail')
                             ->image()

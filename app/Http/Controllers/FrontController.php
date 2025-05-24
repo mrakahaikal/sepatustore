@@ -40,6 +40,15 @@ class FrontController extends Controller
 
     public function category(Category $category)
     {
-        return view('front.category', compact('category'));
+        $randomShoes = Shoe::inRandomOrder()->take(3)->get();
+        return view('front.category', compact('category', 'randomShoes'));
+    }
+
+    public function categories()
+    {
+        $data = $this->frontService->getFrontData();
+        $categories = $data['categories'];
+
+        return view('pages.categories', compact('categories'));
     }
 }
