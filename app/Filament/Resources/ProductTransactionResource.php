@@ -14,7 +14,7 @@ use Filament\Forms\Components\Grid;
 use Filament\Tables\Actions\Action;
 use Filament\Forms\Components\Select;
 use Filament\Forms\Components\Wizard;
-use Filament\Forms\Components\TextArea;
+use Filament\Forms\Components\Textarea;
 use Filament\Tables\Columns\IconColumn;
 use Filament\Tables\Columns\TextColumn;
 use Filament\Forms\Components\TextInput;
@@ -143,7 +143,7 @@ class ProductTransactionResource extends Resource
                                     TextInput::make('email')
                                         ->required()
                                         ->maxLength(255),
-                                    TextArea::make('address')
+                                    Textarea::make('address')
                                         ->rows(5)
                                         ->required(),
                                     TextInput::make('city')

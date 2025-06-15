@@ -18,6 +18,7 @@
             </div>
         @endisset
         {{ $slot }}
+        <x-navbar />
     </div>
     @isset($script)
         {{ $script }}

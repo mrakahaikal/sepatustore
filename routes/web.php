@@ -36,4 +36,4 @@ Route::get('/details/{shoe:slug}', ProductDetails::class)->name('front.details')
 
 Route::get('/order/booking/', OrderBooking::class)->name('front.booking');
 
-Route::view('/profile', 'profile')->name('front.profile');
+// Route::view('/profile', 'profile')->name('front.profile');

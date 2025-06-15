@@ -9,20 +9,11 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Support\RawJs;
 use Filament\Resources\Resource;
-use Filament\Forms\Components\Select;
-use Filament\Forms\Components\Fieldset;
-use Filament\Forms\Components\Repeater;
-use Filament\Forms\Components\TextArea;
-use Filament\Tables\Columns\IconColumn;
-use Filament\Tables\Columns\TextColumn;
-use Filament\Forms\Components\TextInput;
-use Filament\Tables\Columns\ImageColumn;
-use Filament\Forms\Components\FileUpload;
+use Filament\Tables\Columns\{IconColumn, ImageColumn, TextColumn};
 use Filament\Tables\Filters\SelectFilter;
-use Illuminate\Database\Eloquent\Builder;
-use App\Filament\Resources\ShoeResource\Pages;
-use Illuminate\Database\Eloquent\SoftDeletingScope;
-use App\Filament\Resources\ShoeResource\RelationManagers;
+use Filament\Forms\Components\{TextInput, FileUpload, Select, Fieldset, Repeater, Textarea};
+use Illuminate\Database\Eloquent\{Builder, SoftDeletingScope};
+use App\Filament\Resources\ShoeResource\{Pages, RelationManagers};
 
 class ShoeResource extends Resource
 {
@@ -65,7 +56,7 @@ class ShoeResource extends Resource
                     ]),
                 Fieldset::make('Additional')
                     ->schema([
-                        TextArea::make('about')
+                        Textarea::make('about')
                             ->required(),
                         Select::make('is_popular')
                             ->options([
