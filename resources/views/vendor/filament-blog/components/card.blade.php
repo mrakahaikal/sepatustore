@@ -1,9 +1,9 @@
 @props(['post'])
-<a href="{{ route('filamentblog.post.show', ['post' => $post->slug]) }}">
+<a href="{{ route('filamentblog.post.show', ['post' => $post->slug]) }}" wire:navigate>
     <div class="group/blog-item flex flex-col gap-y-5">
         <div class="h-[250px] w-full rounded-xl bg-zinc-300 overflow-hidden">
             <img class="flex h-full w-full items-center justify-center object-cover object-top"
-                 src="{{ asset($post->featurePhoto) }}" alt="{{ $post->photo_alt_text }}">
+                src="{{ asset($post->featurePhoto) }}" alt="{{ $post->photo_alt_text }}">
         </div>
         <div class="flex flex-col justify-between space-y-3 px-2">
             <div>
@@ -17,13 +17,12 @@
             </div>
             <div class="flex items-center gap-4">
                 <img class="h-10 w-10 overflow-hidden rounded-full bg-zinc-300 object-cover text-[0]"
-                     src="{{ $post->user->avatar }}" alt="{{ $post->user->name() }}">
+                    src="{{ $post->user->avatar }}" alt="{{ $post->user->name() }}">
                 <div>
                     <span title="{{ $post->user->name() }}"
-                          class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">{{ $post->user->name() }}</span>
-                    <span
-                        class="block whitespace-nowrap text-sm font-medium font-semibold text-zinc-600">
-                                            {{ $post->formattedPublishedDate() }}</span>
+                        class="block max-w-[150px] overflow-hidden text-ellipsis whitespace-nowrap text-sm font-semibold">{{ $post->user->name() }}</span>
+                    <span class="block whitespace-nowrap text-sm font-medium font-semibold text-zinc-600">
+                        {{ $post->formattedPublishedDate() }}</span>
                 </div>
             </div>
         </div>

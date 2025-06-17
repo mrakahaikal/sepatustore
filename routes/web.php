@@ -37,3 +37,9 @@ Route::get('/details/{shoe:slug}', ProductDetails::class)->name('front.details')
 Route::get('/order/booking/', OrderBooking::class)->name('front.booking');
 
 // Route::view('/profile', 'profile')->name('front.profile');
+
+Route::prefix('user')->name('user.')->group(function () {
+    Route::view('dashboard', 'dashboard')->name('dashboard');
+});
+
+require __DIR__ . '/auth.php';

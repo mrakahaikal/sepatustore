@@ -1,4 +1,4 @@
-@props(['routeName', 'isEdge'])
+@props(['routeName' => null, 'isEdge' => false, 'icon' => ''])
 
 @php
     $class = $isEdge ? '-mx-[22px] ' : 'mx-auto w-full';
@@ -16,23 +16,17 @@
             'class' =>
                 Route::currentRouteName() == $routeName || request()->is($routeName)
                     ? 'flex items-center rounded-full gap-2.5 p-[12px_16px] bg-primary transition ease-in'
-                    : '',
+                    : 'flex flex-col items-center justify-center transition-all gap-0.5',
         ]) }}>
-        {{ $icon }}
+        @svg($icon, 'size-6')
         <span
             {{ $attributes->merge([
                 'class' =>
                     Route::currentRouteName() == $routeName || request()->is($routeName)
                         ? 'font-bold text-sm leading-[21px]'
-                        : 'hidden',
+                        : 'font-light text-xs',
             ]) }}>
             {{ $slot }}
         </span>
     </div>
 </a>
-<!--
-    Tengah
-<a "mx-auto w-full text-white">
-    Pinggir
-<a "active flex shrink-0 -mx-[22px]">
--->

@@ -11,17 +11,20 @@
     </x-slot:topbar>
     <section id="gallery" class="flex flex-col gap-[10px]">
         <div class="flex w-full h-[250px] shrink-0 overflow-hidden px-4">
-            <img id="main-thumbnail" src="{{ Storage::url($shoe->photos()->latest()->first()->photo) }}" class="w-full h-full object-contain object-center" alt="thumbnail">
+            <img id="main-thumbnail" src="{{ Storage::url($shoe->photos()->latest()->first()->photo) }}"
+                class="w-full h-full object-contain object-center" alt="thumbnail">
         </div>
         <div class="swiper w-full overflow-hidden">
             <div class="swiper-wrapper product-swiper">
-                @foreach($shoe->photos as $photo)
-                <div class="swiper-slide !w-fit py-[2px]">
-                    <label class="thumbnail-selector flex flex-col shrink-0 w-20 h-20 rounded-[20px] p-[10px] bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700] has-[:checked]:ring-2 has-[:checked]:ring-[#FFC700]">
-                        <input type="radio" name="image" class="hidden" checked>
-                        <img src="{{ Storage::url($photo->photo) }}" class="w-full h-full object-contain" alt="thumbnail">
-                    </label>
-                </div>
+                @foreach ($shoe->photos as $photo)
+                    <div class="swiper-slide !w-fit py-[2px]">
+                        <label
+                            class="thumbnail-selector flex flex-col shrink-0 w-20 h-20 rounded-[20px] p-[10px] bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700] has-[:checked]:ring-2 has-[:checked]:ring-[#FFC700]">
+                            <input type="radio" name="image" class="hidden" checked>
+                            <img src="{{ Storage::url($photo->photo) }}" class="w-full h-full object-contain"
+                                alt="thumbnail">
+                        </label>
+                    </div>
                 @endforeach
             </div>
         </div>
@@ -56,21 +59,24 @@
         <div class="flex flex-col gap-3 px-4">
             <h2 class="font-bold">Choose Size</h2>
             <div class="flex items-center flex-wrap gap-[10px]">
-                @foreach($shoe->sizes as $size)
-                <label class="relative flex justify-center min-w-[83px] w-fit rounded-2xl ring-1 ring-[#2A2A2A] p-[14px] transition-all duration-300 has-[:checked]:bg-white has-[:checked]:ring-2 has-[:checked]:ring-[#FFC700] hover:ring-2 hover:ring-[#FFC700]">
-                    <input type="radio" name="shoe_size" data-size-id="{{ $size->id }}" value="{{ $size->size }}" class="absolute top-1/2 left-1/2 opacity-0" required>
-                    <span class="font-semibold">{{ $size->size }}</span>
-                </label>
+                @foreach ($shoe->sizes as $size)
+                    <label
+                        class="relative flex justify-center min-w-[83px] w-fit rounded-2xl ring-1 ring-[#2A2A2A] p-[14px] transition-all duration-300 has-[:checked]:bg-white has-[:checked]:ring-2 has-[:checked]:ring-[#FFC700] hover:ring-2 hover:ring-[#FFC700]">
+                        <input type="radio" name="shoe_size" data-size-id="{{ $size->id }}"
+                            value="{{ $size->size }}" class="absolute top-1/2 left-1/2 opacity-0" required>
+                        <span class="font-semibold">{{ $size->size }}</span>
+                    </label>
                 @endforeach
 
                 <input type="hidden" name="size_id" id="size_id" value="">
             </div>
         </div>
         <div id="form-bottom-nav" class="relative flex h-[100px] w-full shrink-0 mt-5">
-            <div class="fixed bottom-5 w-full max-w-[640px] z-30 px-4">
+            <div class="fixed bottom-20 w-full max-w-[640px] z-30 px-4">
                 <div class="flex items-center justify-between rounded-full bg-[#2A2A2A] p-[10px] pl-6">
                     <div class="flex flex-col gap-[2px]">
-                        <p class="font-bold text-[20px] leading-[30px] text-white">Rp{{ number_format($shoe->price, 0, ',', '.') }}</p>
+                        <p class="font-bold text-[20px] leading-[30px] text-white">
+                            Rp{{ number_format($shoe->price, 0, ',', '.') }}</p>
                         <p class="text-sm leading-[21px] text-[#878785]">One pair shoes</p>
                     </div>
                     <x-button-primary>Buy Now</x-button-primary>
@@ -102,7 +108,6 @@
                     });
                 });
             });
-
         </script>
     </x-slot:script>
 </div>
