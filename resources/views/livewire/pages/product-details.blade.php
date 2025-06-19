@@ -71,18 +71,14 @@
                 <input type="hidden" name="size_id" id="size_id" value="">
             </div>
         </div>
-        <div id="form-bottom-nav" class="relative flex h-[100px] w-full shrink-0 mt-5">
-            <div class="fixed bottom-20 w-full max-w-[640px] z-30 px-4">
-                <div class="flex items-center justify-between rounded-full bg-[#2A2A2A] p-[10px] pl-6">
-                    <div class="flex flex-col gap-[2px]">
-                        <p class="font-bold text-[20px] leading-[30px] text-white">
-                            Rp{{ number_format($shoe->price, 0, ',', '.') }}</p>
-                        <p class="text-sm leading-[21px] text-[#878785]">One pair shoes</p>
-                    </div>
-                    <x-button-primary>Buy Now</x-button-primary>
-                </div>
+        <x-slot name="navbar">
+            <div class="flex flex-col gap-[2px]">
+                <p class="font-bold text-[20px] leading-[30px] text-white">
+                    Rp{{ number_format($shoe->price, 0, ',', '.') }}</p>
+                <p class="text-sm leading-[21px] text-[#878785]">One pair shoes</p>
             </div>
-        </div>
+            <x-button-primary>Buy Now</x-button-primary>
+        </x-slot:navbar>
     </form>
     <x-slot:script>
         <script>

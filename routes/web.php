@@ -1,5 +1,6 @@
 <?php
 
+use Livewire\Volt\Volt;
 use App\Livewire\Pages\Home;
 use Illuminate\Support\Facades\Route;
 use App\Livewire\Pages\ProductDetails;
@@ -31,7 +32,8 @@ Route::post('/order/payment/confirm', [OrderController::class, 'paymentConfirm']
 
 Route::get('/order/finished/{productTransaction:id}', [OrderController::class, 'orderFinished'])->name('front.order_finished');
 
-Route::get('/', Home::class)->name('front.index');
+// Route::get('/', Home::class)->name('front.index');
+Volt::route('/', 'pages.home.index')->name('front.index');
 Route::get('/details/{shoe:slug}', ProductDetails::class)->name('front.details');
 
 Route::get('/order/booking/', OrderBooking::class)->name('front.booking');

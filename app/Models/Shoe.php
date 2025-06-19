@@ -3,6 +3,7 @@
 namespace App\Models;
 
 use Illuminate\Support\Str;
+use App\Traits\HasGlobalSearch;
 use Illuminate\Database\Eloquent\Model;
 use Illuminate\Database\Eloquent\SoftDeletes;
 use Illuminate\Database\Eloquent\Relations\HasMany;
@@ -11,7 +12,7 @@ use Illuminate\Database\Eloquent\Factories\HasFactory;
 
 class Shoe extends Model
 {
-    use HasFactory, SoftDeletes;
+    use HasFactory, SoftDeletes, HasGlobalSearch;
 
     protected $fillable = [
         'name',
@@ -48,5 +49,21 @@ class Shoe extends Model
     public function sizes(): HasMany
     {
         return $this->hasMany(ShoeSize::class,);
+    }
+
+    public function scopeSearchScope($query, $term)
+    {
+        return $query->where('name', 'like', "%{$term}%")
+            ->orWhere('description', 'like', "%{$term}%");
+    }
+
+    public function getRoute(): string
+    {
+        return route('front.details', $this);
+    }
+
+    public function getGlobalSearchThumbnail(): ?string
+    {
+        return $this->thumbnail ?? null;
     }
 }

@@ -1,3 +1,18 @@
+<?php
+use Livewire\Volt\Component;
+use App\Services\FrontService;
+use Livewire\Attributes\Title;
+
+new class extends Component {
+    protected FrontService $frontService;
+
+    public function mount(FrontService $frontService)
+    {
+        $this->frontService = $frontService;
+    }
+};
+?>
+
 <div class="gap-5 flex flex-col w-full">
     <form action="{{ route('front.search') }}" class="flex justify-between items-center mx-4">
         <div
@@ -11,9 +26,12 @@
             <span class="font-semibold">Explore</span>
         </button>
     </form>
-    <x-home.partial-category :$categories />
-    <x-home.partial-featured :$popularShoes />
-    <x-home.partial-fresh :$newShoes />
+    @include('pages.home.partials.partial-category', [
+        'categories' => $categories,
+    ])
+    {{-- <x-pages.home.partials.partial-category :$categories />
+    <x-pages.home.partials.partial-featured :$popularShoes />
+    <x-pages.home.partials.partial-fresh :$newShoes /> --}}
 
     <x-slot:script>
         {{-- <script src="{{ asset('js/index.js') }}"></script> --}}

@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-app-layout>
     <div class="flex flex-col items-center justify-center px-4 gap-[30px] my-auto">
         @if (count($posts))
             <section class="py-8">
@@ -41,4 +41,4 @@
             </div>
         @endif
     </div>
-</x-layouts.app>
+</x-app-layout>

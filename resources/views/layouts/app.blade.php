@@ -26,7 +26,9 @@
             </div>
         @endisset
         {{ $slot }}
-        <x-navbar />
+        <x-navbar>
+            {{ $navbar ?? '' }}
+        </x-navbar>
     </div>
     @isset($script)
         {{ $script }}
