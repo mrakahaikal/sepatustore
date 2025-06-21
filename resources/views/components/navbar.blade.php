@@ -13,8 +13,8 @@
                     routeName="front.index">
                     Browse
                 </x-nav-link>
-                <x-nav-link href="{{ route('front.check_booking') }}" isEdge="false" icon="heroicon-s-shopping-bag"
-                    routeName="front.check_booking">
+                <x-nav-link href="{{ route('brand.index') }}" isEdge="false" icon="heroicon-s-shopping-bag"
+                    routeName="brand.index">
                     Brands
                 </x-nav-link>
                 <x-nav-link href="{{ route('front.check_booking') }}" isEdge="false" icon="heroicon-s-shopping-bag"

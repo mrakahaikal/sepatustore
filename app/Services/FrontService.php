@@ -32,11 +32,6 @@ class FrontService
     public function getFrontData()
     {
         $categories = $this->categoryRepository->getAllCategories();
-        $categories = $categories
-            ->map(fn($category) => CategoryDTO::fromModel($category))
-            ->toArray();
-
-
         $popularShoes = $this->shoeRepository->getPopularShoes(4);
         $newShoes = $this->shoeRepository->getAllNewShoes();
         $brands = $this->shoeRepository->getAllBrands();

@@ -2,18 +2,17 @@
 use Livewire\Volt\Component;
 use App\Services\FrontService;
 use Livewire\Attributes\Title;
+use Livewire\Attributes\Locked;
 
 new #[Title('Surganya Segala Sepatu')] class extends Component {
     protected FrontService $frontService;
+    #[Locked]
     public array $data;
-    public array $categories = [];
 
     public function mount(FrontService $frontService)
     {
         $this->frontService = $frontService;
         $this->data = $frontService->getFrontData();
-        $this->categories = $this->data['categories'];
-        // dd($this->categories);
     }
 };
 ?>
@@ -23,7 +22,7 @@ new #[Title('Surganya Segala Sepatu')] class extends Component {
         <livewire:global-search />
     </div>
     @include('pages.home.partials._category-section', [
-        'categories' => $categories,
+        'categories' => $data['categories'],
     ])
     @include('pages.home.partials._brands-section', [
         'brands' => $data['brands'],

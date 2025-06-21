@@ -78,8 +78,8 @@
                 <p class="text-sm leading-[21px] text-[#878785]">One pair shoes</p>
             </div>
             <x-button-primary>Buy Now</x-button-primary>
-        </x-slot:navbar>
     </form>
+    </x-slot:navbar>
     <x-slot:script>
         <script>
             document.addEventListener('livewire:navigated', function() {
