@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-app-layout>
     <x-slot:title>Semua Kategori</x-slot:title>
     <x-slot:topbar>
         <a href="{{ route('front.index') }}" wire:navigate>
@@ -33,4 +33,4 @@
         </div>
     </section>
     <x-navbar />
-</x-layouts.app>
+</x-app-layout>

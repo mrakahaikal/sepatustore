@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-app-layout>
     <x-slot:title>{{ $category->name }}</x-slot:title>
     <x-slot:topbar>
         <a href="{{ route('front.index') }}">
@@ -69,4 +69,4 @@
         </div>
     </section>
     <x-navbar></x-navbar>
-</x-layouts.app>
+</x-app-layout>

@@ -15,15 +15,15 @@
                 </x-nav-link>
                 <x-nav-link href="{{ route('front.check_booking') }}" isEdge="false" icon="heroicon-s-shopping-bag"
                     routeName="front.check_booking">
+                    Brands
+                </x-nav-link>
+                <x-nav-link href="{{ route('front.check_booking') }}" isEdge="false" icon="heroicon-s-shopping-bag"
+                    routeName="front.check_booking">
                     My Order
                 </x-nav-link>
-                <x-nav-link href="{{ route('filamentblog.post.index') }}" isEdge="false" icon="heroicon-s-newspaper"
+                <x-nav-link href="{{ route('filamentblog.post.index') }}" isEdge="true" icon="heroicon-s-newspaper"
                     routeName="filamentblog.post.index">
                     Articles
-                </x-nav-link>
-                <x-nav-link href="{{ route('user.dashboard') }}" isEdge="true" icon="heroicon-s-user-circle"
-                    routeName="user.dashboard">
-                    Akun
                 </x-nav-link>
             @endif
         </div>

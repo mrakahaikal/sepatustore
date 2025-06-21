@@ -3,18 +3,19 @@
 namespace App\Repositories;
 
 use App\Models\Shoe;
+use App\Models\Brand;
 use App\Repositories\Contracts\ShoeRepositoryInterface;
 
 class ShoeRepository implements ShoeRepositoryInterface
 {
-    public function getPopularShoes($limit = 4) // Default limit
+    public function getPopularShoes(int $limit = 4) // Default limit
     {
         return Shoe::where('is_popular', true)->take($limit)->get();
     }
 
     public function searchByName(string $keyword)
     {
-        return Shoe::where('name', 'LIKE', '%' . $keyword . '%')->get();
+        return Shoe::where('name', 'LIKE', "%{$keyword}%")->get();
     }
 
     public function getAllNewShoes()
@@ -31,5 +32,10 @@ class ShoeRepository implements ShoeRepositoryInterface
     {
         $shoe = $this->find($shoeId);
         return $shoe ? $shoe->price : 0;
+    }
+
+    public function getAllBrands()
+    {
+        return Brand::all();
     }
 }

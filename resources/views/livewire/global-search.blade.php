@@ -55,28 +55,43 @@ new class extends Component {
 
 ?>
 
-<div x-data="{ open: false }" class="relative w-80" @click.away="open = false">
-    <input type="text" wire:model.live.debounce.300ms="search" @focus="open = true" autocomplete="off"
-        placeholder="Cari apa saja..." class="w-full border px-3 py-2 rounded pr-10" />
-
-    <div class="absolute right-3 top-2.5" wire:loading wire:target="search">
-        <svg class="animate-spin h-4 w-4 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
-            viewBox="0 0 24 24">
-            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4" />
-            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
-        </svg>
-    </div>
+<div x-data="{ open: false }" class="relative max-w-screen-sm" @click.away="open = false">
+    <form action="{{ route('front.search') }}" class="flex justify-between items-center">
+        <div
+            class="relative flex items-center w-full rounded-l-full px-[14px] gap-[10px] bg-white transition-all duration-300 focus-within:ring-2 focus-within:ring-[#FFC700]">
+            @svg('heroicon-s-magnifying-glass', 'w-6 h-6')
+            <input type="text" type="text" name="keyword" wire:model.live.debounce.300ms="search" @focus="open = true"
+                autocomplete="off"
+                class="w-full py-[14px] appearance-none bg-white outline-none font-semibold placeholder:font-normal placeholder:text-[#878785]"
+                placeholder="Search...">
+            <div class="absolute right-3 top-4" wire:loading wire:target="search">
+                <svg class="animate-spin size-5 text-gray-500" xmlns="http://www.w3.org/2000/svg" fill="none"
+                    viewBox="0 0 24 24">
+                    <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor"
+                        stroke-width="4" />
+                    <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8v4a4 4 0 00-4 4H4z" />
+                </svg>
+            </div>
+        </div>
+        <button type="submit" class="h-full rounded-r-full py-[14px] px-5 bg-primary">
+            <span class="font-semibold">Explore</span>
+        </button>
+    </form>
 
     <ul x-show="open" x-transition
-        class="absolute z-10 w-full bg-white border mt-1 rounded shadow max-h-64 overflow-y-auto text-sm">
+        class="absolute z-10 w-full rounded-2xl bg-white border mt-1 shadow min-h-40 max-h-96 overflow-y-auto text-sm">
         @if (empty($results))
             @if (strlen($search) >= 2)
-                <li class="px-3 py-3 text-gray-400 text-sm text-center italic">
+                <li class="px-3 py-3 text-gray-400 text-md text-center italic">
                     Tidak ditemukan hasil untuk "<strong>{{ $search }}</strong>"
+                    <img class="w-48 h-48 shrink-0 mx-auto mt-2"
+                        src="{{ asset('assets/images/illustrations/question.svg') }}" alt="Nothing Matches">
                 </li>
             @else
-                <li class="px-3 py-3 text-gray-400 text-sm text-center italic">
+                <li class="px-3 py-3 text-gray-400 text-md text-center italic">
                     Cari apa saja...
+                    <img class="w-48 h-48 shrink-0 mx-auto mt-2"
+                        src="{{ asset('assets/images/illustrations/explore.svg') }}" alt="Explore">
                 </li>
             @endif
         @else
@@ -87,13 +102,13 @@ new class extends Component {
                     <li class="px-3 py-2 hover:bg-gray-100 cursor-pointer flex items-center space-x-3">
                         @if ($item['route'])
                             <a href="{{ $item['route'] }}" wire:navigate class="flex items-center space-x-3">
-                                @if (!empty($item['thumb']))
+                                @if (!empty($item['thumb']) || $item['thumb'] !== null)
                                     <img src="{{ Storage::url($item['thumb']) }}"
                                         class="w-8 h-8 rounded object-cover border border-gray-200" alt="">
                                 @else
                                     <div
                                         class="w-8 h-8 rounded bg-gray-100 flex items-center justify-center text-gray-400 text-sm">
-                                        @svg($item['icon'], 'size-4')
+                                        @svg($item['icon'], 'size-4 text-gray-400')
                                     </div>
                                 @endif
 

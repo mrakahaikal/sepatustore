@@ -7,13 +7,13 @@
         </a>
     </div>
     <div class="grid grid-cols-2 gap-4">
-        @forelse($categories as $item)
+        @forelse($categories as $key => $item)
             <a href="{{ route('front.category', $item->slug) }}" wire:navigate>
                 <div
                     class="flex items-center justify-between w-full rounded-2xl overflow-hidden bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700]">
                     <div class="flex flex-col gap-[2px] px-[14px]">
                         <h3 class="font-bold text-sm leading-[21px]">{{ $item->name }}</h3>
-                        <p class="text-xs leading-[18px] text-[#878785]">{{ $item->shoes->count() }} Shoes</p>
+                        <p class="text-xs leading-[18px] text-[#878785]">{{ $item->shoesCount }} Shoes</p>
                     </div>
                     <div class="flex shrink-0 w-20 h-[90px] overflow-hidden">
                         <img src="{{ Storage::url($item->icon) }}" class="w-full h-full object-cover object-left"

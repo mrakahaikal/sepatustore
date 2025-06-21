@@ -15,11 +15,6 @@ Route::get('/search', [FrontController::class, 'search'])->name('front.search');
 Route::get('/browse', [FrontController::class, 'categories'])->name('front.categories');
 Route::get('/browse/{category:slug}', [FrontController::class, 'category'])->name('front.category');
 
-Route::get('/check-booking', [OrderController::class, 'checkBooking'])->name('front.check_booking');
-Route::post('/check-booking/details', [OrderController::class, 'checkBookingDetails'])->name('front.check_booking_details');
-
-// Route::get('/details/{shoe:slug}', [FrontController::class, 'details'])->name('front.details');
-
 Route::post('/order/begin/{shoe:slug}', [OrderController::class, 'saveOrder'])->name('front.save_order');
 
 // Route::get('/order/booking/', [OrderController::class, 'booking'])->name('front.booking');
@@ -32,16 +27,22 @@ Route::post('/order/payment/confirm', [OrderController::class, 'paymentConfirm']
 
 Route::get('/order/finished/{productTransaction:id}', [OrderController::class, 'orderFinished'])->name('front.order_finished');
 
-// Route::get('/', Home::class)->name('front.index');
 Volt::route('/', 'pages.home.index')->name('front.index');
-Route::get('/details/{shoe:slug}', ProductDetails::class)->name('front.details');
 
+Route::get('/check-booking', [OrderController::class, 'checkBooking'])->name('front.check_booking');
+Route::post('/check-booking/details', [OrderController::class, 'checkBookingDetails'])->name('front.check_booking_details');
+
+Volt::route('brands', 'pages.brand.index')->name('brand.index');
+Volt::route('brands/{brand:slug}', 'pages.brand.show.index')->name('brand.show');
+
+
+Route::get('/details/{shoe:slug}', ProductDetails::class)->name('front.details');
 Route::get('/order/booking/', OrderBooking::class)->name('front.booking');
 
-// Route::view('/profile', 'profile')->name('front.profile');
 
 Route::prefix('user')->name('user.')->group(function () {
+    // Route::view('/profile', 'profile')->name('front.profile');
     Route::view('dashboard', 'dashboard')->name('dashboard');
 });
 
-require __DIR__ . '/auth.php';
+// require __DIR__ . '/auth.php';

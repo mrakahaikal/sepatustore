@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-app-layout>
     <x-slot:title>
         Hasil Pencarian
     </x-slot:title>
@@ -60,4 +60,4 @@
 
     </section>
 
-</x-layouts.app>
+</x-app-layout>

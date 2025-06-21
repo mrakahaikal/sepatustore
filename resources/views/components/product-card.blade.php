@@ -1,6 +1,6 @@
 @props(['link', 'thumbnail', 'name', 'price', 'id'])
 
-<div class="swiper-slide !w-fit py-0.5" wire:key='{{ $id }}'>
+<div class="swiper-slide !w-fit py-0.5" wire:key='product-{{ $id }}'>
     <a href="{{ $link }}">
         <div
             class="flex flex-col shrink-0 w-[230px] h-full rounded-3xl gap-[14px] p-[10px] pb-4 bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700]">
