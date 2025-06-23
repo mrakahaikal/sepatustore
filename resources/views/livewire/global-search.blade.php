@@ -5,13 +5,15 @@ namespace App\Livewire;
 use App\Models\Shoe;
 use App\Models\Category;
 use Livewire\Volt\Component;
+use App\Services\FrontService;
 use Firefly\FilamentBlog\Models\Post;
 use Firefly\FilamentBlog\Models\Category as BlogCategory;
 
 new class extends Component {
-    public string $search = '';
+    public ?string $search = '';
     public bool $open = false;
     public array $results = [];
+    protected ?FrontService $service;
 
     protected array $searchables = [
         Shoe::class => 'Produk',
@@ -19,6 +21,11 @@ new class extends Component {
         Category::class => 'Kategori',
         BlogCategory::class => 'Kategori Blog',
     ];
+
+    public function boot(FrontService $service)
+    {
+        $this->service = $service;
+    }
 
     public function updatedSearch()
     {
@@ -51,12 +58,19 @@ new class extends Component {
             }
         }
     }
+
+    public function searchResult()
+    {
+        $keyword = $this->search;
+
+        $this->redirectRoute('front.search', ['keyword' => $keyword], navigate: true);
+    }
 };
 
 ?>
 
 <div x-data="{ open: false }" class="relative max-w-screen-sm" @click.away="open = false">
-    <form action="{{ route('front.search') }}" class="flex justify-between items-center">
+    <form wire:submit.prevent="searchResult" class="flex justify-between items-center">
         <div
             class="relative flex items-center w-full rounded-l-full px-[14px] gap-[10px] bg-white transition-all duration-300 focus-within:ring-2 focus-within:ring-[#FFC700]">
             @svg('heroicon-s-magnifying-glass', 'w-6 h-6')

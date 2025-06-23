@@ -8,7 +8,7 @@ use App\Http\Controllers\FrontController;
 use App\Http\Controllers\OrderController;
 use App\Livewire\Pages\Order\OrderBooking;
 
-Route::get('/search', [FrontController::class, 'search'])->name('front.search');
+Volt::route('/search', 'pages.search.index')->name('front.search');
 
 // Route::get('/order/booking/', [OrderController::class, 'booking'])->name('front.booking');
 Route::post('/order/begin/{shoe:slug}', [OrderController::class, 'saveOrder'])->name('front.save_order');
@@ -23,8 +23,8 @@ Volt::route('/', 'pages.home.index')->name('front.index');
 Route::get('/check-booking', [OrderController::class, 'checkBooking'])->name('front.check_booking');
 Route::post('/check-booking/details', [OrderController::class, 'checkBookingDetails'])->name('front.check_booking_details');
 
-Volt::route('brands', 'pages.brand.index')->name('brand.index');
-Volt::route('brands/{brand:slug}', 'pages.brand.show.index')->name('brand.show');
+Volt::route('/brands', 'pages.brand.index')->name('brand.index');
+Route::get('/brands/{brand:slug}', [FrontController::class, 'brand'])->name('brand.show');
 
 Route::get('/browse', [FrontController::class, 'categories'])->name('front.categories');
 Route::get('/browse/{category:slug}', [FrontController::class, 'category'])->name('front.category');
@@ -33,9 +33,9 @@ Route::get('/details/{shoe:slug}', ProductDetails::class)->name('front.details')
 Route::get('/order/booking/', OrderBooking::class)->name('front.booking');
 
 
-Route::prefix('user')->name('user.')->group(function () {
+// Route::prefix('user')->name('user.')->group(function () {
     // Route::view('/profile', 'profile')->name('front.profile');
-    Route::view('dashboard', 'dashboard')->name('dashboard');
-});
+    // Route::view('dashboard', 'dashboard')->name('dashboard');
+// });
 
 // require __DIR__ . '/auth.php';

@@ -4,7 +4,7 @@
         : 'flex items-center justify-between rounded-full bg-[#2A2A2A] p-[10px] pl-6';
 @endphp
 <div id="bottom-nav" class="relative flex h-[100px] w-full shrink-0">
-    <nav class="fixed bottom-5 w-full max-w-[640px] px-4 z-30">
+    <nav class="fixed bottom-5 w-full max-w-screen-sm px-4 z-30">
         <div class="{{ $classes }}">
             @if (trim($slot))
                 {{ $slot }}

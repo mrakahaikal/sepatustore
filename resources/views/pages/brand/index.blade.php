@@ -31,7 +31,7 @@ new #[Title('Semua Brand')] class extends Component {
     <section id="all-brands" class="flex flex-col gap-4 px-4 mb-[111px]">
         <div class="flex flex-col gap-4">
             @forelse($data as $item)
-                <a href="{{ route('front.category', $item->slug) }}" wire:navigate>
+                <a href="{{ route('brand.show', $item->slug) }}" wire:navigate>
                     <div
                         class="flex items-center justify-between w-full rounded-2xl overflow-hidden bg-white transition-all duration-300 hover:ring-2 hover:ring-[#FFC700]">
                         <div class="flex flex-col gap-[2px] px-[14px]">

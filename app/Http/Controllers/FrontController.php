@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Services\FrontService;
 use App\Models\Shoe;
+use App\Models\Brand;
 use App\Models\Category;
 use Illuminate\Http\Request;
+use App\Services\FrontService;
 
 class FrontController extends Controller
 {
@@ -18,9 +19,9 @@ class FrontController extends Controller
 
     public function search(Request $request)
     {
-        $keyword = $request->input('keyword');
-
+        $keyword = $request;
         $shoes = $this->frontService->searchShoes($keyword);
+        dd($shoes);
 
         return view('front.search', [
             'shoes' => $shoes,
@@ -50,5 +51,11 @@ class FrontController extends Controller
         $categories = $data['categories'];
 
         return view('pages.categories', compact('categories'));
+    }
+
+    public function brand(Brand $brand)
+    {
+        $randomShoes = Shoe::inRandomOrder()->take(3)->get();
+        return view('pages.brand.show.index', compact('brand', 'randomShoes'));
     }
 }

@@ -25,6 +25,7 @@
                 {{ $topbar }}
             </div>
         @endisset
+        <!-- Content goes here -->
         {{ $slot }}
         <x-navbar>
             {{ $navbar ?? '' }}

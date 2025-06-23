@@ -7,7 +7,7 @@
 <a {{ $attributes->merge([
     'class' =>
         Route::currentRouteName() == $routeName || request()->is($routeName)
-            ? "text-[#090917] $class"
+            ? "text-[#090917] {$class}"
             : 'text-white mx-auto',
 ]) }}
     wire:navigate>

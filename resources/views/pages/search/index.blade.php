@@ -1,4 +1,29 @@
-<x-app-layout>
+<?php
+
+use Livewire\Attributes\Url;
+use Livewire\Volt\Component;
+use App\Services\FrontService;
+
+new class extends Component {
+    protected FrontService $service;
+    #[Url]
+    public ?string $keyword;
+
+    public function mount(FrontService $service)
+    {
+        $this->service = $service;
+    }
+
+    public function with()
+    {
+        return [
+            'shoes' => $this->service->searchShoes($this->keyword),
+        ];
+    }
+};
+
+?>
+<div>
     <x-slot:title>
         Hasil Pencarian
     </x-slot:title>
@@ -9,22 +34,16 @@
         <p class="font-bold text-lg leading-[27px]">Search Result</p>
         <div class="dummy-btn w-10"></div>
     </x-slot:topbar>
-    <form action="{{ route('front.search') }}" class="flex justify-between items-center mx-4">
-        <div
-            class="relative flex items-center w-full rounded-l-full px-[14px] gap-[10px] bg-white transition-all duration-300 focus-within:ring-2 focus-within:ring-[#FFC700]">
-            <img src="{{ asset('assets/images/icons/search-normal.svg') }}" class="w-6 h-6" alt="icon">
-            <input type="text" name="keyword"
-                class="w-full py-[14px] appearance-none bg-white outline-none font-bold leading-5 placeholder:font-normal placeholder:text-[#878785]"
-                placeholder="Search product...">
-        </div>
-        <button type="submit" class="h-full rounded-r-full py-[14px] px-5 bg-primary">
-            <span class="font-semibold">Explore</span>
-        </button>
-    </form>
+    <div class="px-4">
+        <livewire:global-search :search="$keyword" />
+    </div>
     <section id="result" class="flex flex-col gap-4 px-4 mb-[111px] mt-[10px]">
-        @if (empty($shoes))
-            <p>Kosong</p>
+        @if ($keyword == null)
+            <p class="text-center"><strong>Uppps!</strong> Keyword Kosong</p>
+            <img class="w-96 h-96 shrink-0 mx-auto mt-2" src="{{ asset('assets/images/illustrations/question.svg') }}"
+                alt="Nothing Matches">
         @else
+            <p class="text-center">Menampilkan semua hasil dengan keyword <strong>"{{ $keyword }}"</strong></p>
             @forelse ($shoes as $shoe)
                 <a href="{{ route('front.details', $shoe->slug) }}">
                     <div
@@ -57,10 +76,10 @@
                     </div>
                 </a>
             @empty
-                <p>Tidak ada produk sesuai dengan keyword</p>
+                <img class="w-96 h-96 shrink-0 mx-auto mt-2"
+                    src="{{ asset('assets/images/illustrations/question.svg') }}" alt="Nothing Matches">
+                <p class="text-center">Tidak ada hasil sesuai dengan keyword <strong>"{{ $keyword }}"</strong></p>
             @endforelse
         @endif
-
     </section>
-
-</x-app-layout>
+</div>

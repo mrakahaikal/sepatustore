@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-app-layout>
     <section class="py-10">
         <header class="container mx-auto px-6">
             <h3 class="inherits-color text-balance leading-tighter relative z-10 text-3xl font-semibold tracking-tight">
@@ -25,4 +25,4 @@
         </div>
     </section>
 
-</x-layouts.app>
+</x-app-layout>
