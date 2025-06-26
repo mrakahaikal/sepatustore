@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-app-layout>
     <x-slot:title>
         Home
     </x-slot:title>
@@ -133,4 +133,4 @@
             @endforelse
         </div>
     </section>
-</x-layouts.app>
+</x-app-layout>

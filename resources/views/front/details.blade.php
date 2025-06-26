@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-app-layout>
     <x-slot:title>
         {{ $shoe->name }} Details
     </x-slot:title>
@@ -100,4 +100,4 @@
             });
         </script>
     </x-slot:script>
-</x-layouts.app>
+</x-app-layout>

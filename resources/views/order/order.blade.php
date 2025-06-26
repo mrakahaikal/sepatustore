@@ -1,4 +1,4 @@
-<x-layouts.app>
+<x-app-layout>
     <x-slot:title>
         Order
     </x-slot:title>
@@ -10,4 +10,4 @@
         <div class="dummy-btn w-10"></div>
     </x-slot:topbar>
     <livewire:order-form :$shoe :$orderData />
-</x-layouts.app>
+</x-app-layout>
