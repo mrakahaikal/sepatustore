@@ -4,9 +4,9 @@ namespace App\Filament\Resources;
 
 use Filament\Forms;
 use Filament\Tables;
+use App\Models\Category;
 use Filament\Forms\Form;
 use Filament\Tables\Table;
-use App\Models\Category;
 use Filament\Resources\Resource;
 use Filament\Forms\Components\Grid;
 use Filament\Tables\Columns\TextColumn;
@@ -16,6 +16,7 @@ use Filament\Forms\Components\FileUpload;
 use Illuminate\Database\Eloquent\Builder;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ShoeCategoryResource\Pages;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use App\Filament\Resources\ShoeCategoryResource\RelationManagers;
 
 class ShoeCategoryResource extends Resource
@@ -37,6 +38,14 @@ class ShoeCategoryResource extends Resource
                             ->maxLength(255),
                         FileUpload::make('icon')
                             ->image()
+                            ->directory('category_icons')
+                            ->getUploadedFileNameForStorageUsing(
+                                function (TemporaryUploadedFile $file, Forms\Get $get) {
+                                    $fileName = strtolower($get('name'));
+                                    (string) str($file->getClientOriginalName())->prepend("{$fileName}-category-icon");
+                                }
+                            )
+                            ->visibility('public')
                             ->required(),
                     ])
             ]);

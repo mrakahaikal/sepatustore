@@ -27,6 +27,7 @@ use Filament\Forms\Components\Wizard\Step;
 use Filament\Forms\Components\ToggleButtons;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\ProductTransactionResource\Pages;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use App\Filament\Resources\ProductTransactionResource\RelationManagers;
 
 class ProductTransactionResource extends Resource
@@ -170,6 +171,13 @@ class ProductTransactionResource extends Resource
                                 ->required(),
                             FileUpload::make('proof')
                                 ->image()
+                                ->directory('proofs')
+                                ->getUploadedFileNameForStorageUsing(
+                                    function (TemporaryUploadedFile $file, Forms\Get $get) {
+                                        $fileName = strtolower($get('booking_trx_id'));
+                                        (string) str($file->getClientOriginalName())->prepend("{$fileName}-payment-proof");
+                                    }
+                                )
                                 ->required(),
                         ]),
                 ])

@@ -7,8 +7,10 @@ use Firefly\FilamentBlog\Traits\HasBlog;
 use Illuminate\Notifications\Notifiable;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Foundation\Auth\User as Authenticatable;
+use Filament\Models\Contracts\FilamentUser;
+use Filament\Panel;
 
-class User extends Authenticatable
+class User extends Authenticatable implements FilamentUser
 {
     use HasFactory, Notifiable, HasBlog;
 
@@ -49,5 +51,20 @@ class User extends Authenticatable
             'email_verified_at' => 'datetime',
             'password' => 'hashed',
         ];
+    }
+
+    public function canAccessPanel(Panel $panel): bool
+    {
+        if (env('APP_ENV') === 'local') {
+            return true;
+        }
+
+        if (env('APP_ENV') === 'production') {
+            // In production, use the email checking logic
+            return str_ends_with($this->email, '@mrakahaikal.com') && $this->hasVerifiedEmail();
+        }
+
+        // Default: fallback to previous logic
+        return str_ends_with($this->email, '@mrakahaikal.com') && $this->hasVerifiedEmail();
     }
 }

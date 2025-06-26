@@ -9,11 +9,12 @@ use Filament\Forms\Form;
 use Filament\Tables\Table;
 use Filament\Support\RawJs;
 use Filament\Resources\Resource;
-use Filament\Tables\Columns\{IconColumn, ImageColumn, TextColumn};
 use Filament\Tables\Filters\SelectFilter;
-use Filament\Forms\Components\{TextInput, FileUpload, Select, Fieldset, Repeater, Textarea};
 use Illuminate\Database\Eloquent\{Builder, SoftDeletingScope};
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 use App\Filament\Resources\ShoeResource\{Pages, RelationManagers};
+use Filament\Tables\Columns\{IconColumn, ImageColumn, TextColumn};
+use Filament\Forms\Components\{TextInput, FileUpload, Select, Fieldset, Repeater, Textarea};
 
 class ShoeResource extends Resource
 {
@@ -39,12 +40,29 @@ class ShoeResource extends Resource
                             ->prefix('IDR'),
                         FileUpload::make('thumbnail')
                             ->image()
+                            ->directory('shoe_thumbnails')
+                            ->getUploadedFileNameForStorageUsing(
+                                function (TemporaryUploadedFile $file, Forms\Get $get) {
+                                    $fileName = strtolower($get('name'));
+                                    (string) str($file->getClientOriginalName())->prepend("{$fileName}-thumbnail");
+                                }
+                            )
+                            ->visibility('public')
                             ->required(),
                         Repeater::make('photos')
                             ->relationship('photos')
                             ->schema([
                                 FileUpload::make('photo')
                                     ->required()
+                                    ->directory('shoe_photos')
+                                    ->getUploadedFileNameForStorageUsing(
+                                        function (TemporaryUploadedFile $file, Forms\Get $get, $loop) {
+                                            $fileName = strtolower($get('name'));
+                                            $index = $loop->index;
+                                            (string) str($file->getClientOriginalName())->prepend("{$fileName}-{$index}");
+                                        }
+                                    )
+                                    ->visibility('public')
                             ]),
                         Repeater::make('sizes')
                             ->relationship('sizes')

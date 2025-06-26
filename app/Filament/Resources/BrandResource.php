@@ -16,6 +16,7 @@ use Illuminate\Database\Eloquent\Builder;
 use App\Filament\Resources\BrandResource\Pages;
 use Illuminate\Database\Eloquent\SoftDeletingScope;
 use App\Filament\Resources\BrandResource\RelationManagers;
+use Livewire\Features\SupportFileUploads\TemporaryUploadedFile;
 
 class BrandResource extends Resource
 {
@@ -30,11 +31,21 @@ class BrandResource extends Resource
         return $form
             ->schema([
                 TextInput::make('name')
+                    ->label('Nama Brand')
                     ->required()
                     ->columnSpan(2)
                     ->maxLength(255),
                 FileUpload::make('logo')
+                    ->label('Logo Brand')
                     ->image()
+                    ->directory('brands')
+                    ->getUploadedFileNameForStorageUsing(
+                        function (TemporaryUploadedFile $file, Forms\Get $get) {
+                            $fileName = strtolower($get('name'));
+                            (string) str($file->getClientOriginalName())->prepend("{$fileName}-brand-logo");
+                        }
+                    )
+                    ->visibility('public')
                     ->columnSpan(2)
                     ->required(),
             ]);
